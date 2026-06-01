@@ -1,0 +1,378 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Heebo", sans-serif;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+#accueil {
+    position: relative;
+    overflow: hidden;
+    background-image: url(images/mc_landing_banner.png);
+    background-size: cover;
+    min-height: 100vh;
+}
+
+nav {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+#banniere-main {
+    width: 100%;
+    display: block;
+}
+
+.imgproduit {
+    max-width: 181.66px;
+    max-height: 181.66px;
+}
+
+#texte-emplacement {
+    font-weight: 700;
+    font-size: clamp(16px, 2.5vw, 26px);
+    max-width: 100%;
+}
+
+#choix-emp {
+    text-decoration: none;
+    color: black;
+}
+
+#main-title {
+    font-weight: 700;
+    font-size: clamp(22px, 4vw, 42px);
+}
+
+#choix-emplacement {
+    background-color: white;
+    border-radius: 16px;
+    padding: 20px;
+    width: 100%;
+    max-width: 698px;
+}
+
+#emplacement {
+    position: absolute;
+    display: flex;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 698px;
+    height: auto;
+}
+
+#nav-link {
+    display: flex;
+    margin: auto;
+}
+
+#icone-choix a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-align: center;
+    margin: auto;
+    font-size: 26px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+#icone-choix {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+#icone-choix img {
+    display: block;
+    max-width: 106.88px;
+    height: auto;
+}
+
+.choix-lieu {
+    margin: auto;
+    width: clamp(200px, 42%, 285px);
+    height: auto;
+    min-height: 160px;
+    border: 8px solid #FFC836;
+    border-radius: 8px;
+    text-decoration: none;
+    color: black;
+}
+
+/* Fenetre menu */
+
+#zone-produit {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+    gap: 10px;
+    max-width: 65%;
+    margin-left: 5%;
+}
+
+#text-menu {
+    margin-left: 7%;
+    padding-top: 3%;
+}
+
+#slider {
+    display: flex;
+    align-items: center;
+    margin: 0 0.1%;
+    width: 70%;
+    max-width: 70%;
+}
+
+.produit {
+    display: flexbox;
+    align-content: center;
+    border: 1px solid;
+    border-color: #6E6E6E;
+    border-radius: 8px;
+}
+
+#type-produit {
+    font-weight: 400;
+    font-size: 20px;
+    padding: 10px;
+}
+
+#prix-produit {
+    font-weight: 400;
+    font-size: 18px;
+    padding: 10px;
+}
+
+.produit-slider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 120px;
+    height: 120px;
+    border: 2px solid;
+    border-color: #6E6E6E;
+    border-radius: 8px;
+    text-decoration: none;
+    margin: 10px 5px;
+}
+
+.image-slider {
+    width: 80px;
+    height: 70px;
+}
+
+#fleche-slider {
+    margin-top: 20px;
+}
+
+#text-slider {
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: none;
+    color: black;
+    text-decoration-line: none;
+}
+
+#resume-commande {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 30%;
+    max-width: 30%;
+    background-color: #F1F1F1;
+    align-items: center;
+}
+
+#logo {
+    height: 28.24px;
+    width: 32.3px;
+    margin-top: 40px;
+}
+
+#fleche_slider-inv {
+    transform: rotate(180deg);
+}
+.overlay-title {
+    font-size: 26px;
+    font-weight: 700;
+}
+.overlay-text{
+    font-size: 18px;
+    font-weight: 700;
+}
+.choix-overlay{    
+    position: absolute;
+    display: flex;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 698px;
+    height: auto;
+}
+#num-chevalet{
+    background-color: white;
+    border-radius: 16px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90%;
+    max-width: 698px;
+    height: auto;
+}
+
+#title-chevalet{
+    font-weight: 700;
+    font-size: clamp(22px, 4vw, 42px);
+    width: 100%;
+}
+#texte-chevalet{
+    font-weight: 700;
+    font-size: clamp(16px, 2.5vw, 26px);
+    max-width: 100%;
+
+}
+.choix-menu{
+    margin: auto;
+    width: clamp(200px, 42%, 285px);
+    height: auto;
+    min-height: 160px;
+    border: 8px solid #FFC836;
+    border-radius: 8px;
+    text-decoration: none;
+    color: black;
+}
+#choix-chevalet{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 20px;
+    align-items: center;
+    width: 100%
+}
+#chiffre-chevalet{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    gap: 50px;
+}
+#chiffre-chevalet input{
+    width: 155px;
+    height: 121px;
+    text-align: center;
+    border: none;
+    border-bottom: 10px solid #D9D9D9;
+    font-size: 96px;
+    outline: none;
+    font-weight: 700;
+}
+#btn-chevalet {
+    padding: 16px 32px;
+    max-width: 221px;
+    max-height:max-content;   
+    background-color: #FFC836;
+    border-radius: 8px;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    margin-top: 40%;
+    display: block;
+
+}
+#img-chevalet{
+    max-width: 259px;
+    max-height: 265px;
+    position:absolute;
+    top: 130px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+
+
+/* ── Tablette (≤ 1024px) ── */
+@media (max-width: 1024px) {
+    #zone-produit {
+        max-width: 55%;
+    }
+    #slider {
+        width: 90%;
+        max-width: 90%;
+    }
+    #resume-commande {
+        width: 260px;
+    }
+}
+
+/* ── Mobile (≤ 768px) ── */
+@media (max-width: 768px) {
+    #accueil {
+        min-height: 100svh;
+    }
+
+    #emplacement {
+        position: static;
+        transform: none;
+        width: 90%;
+        margin: 1.5rem auto;
+    }
+
+    #zone-produit {
+        max-width: 100%;
+        margin-left: 4%;
+        margin-right: 4%;
+    }
+
+    #slider {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    #resume-commande {
+        position: fixed;
+        bottom: 0;
+        top: auto;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: auto;
+        max-height: 45vh;
+        overflow-y: auto;
+        border-radius: 16px 16px 0 0;
+        box-shadow: 0 -4px 20px rgba(230, 17, 17, 0.12);
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    body {
+        padding-bottom: 120px;
+    }
+}
