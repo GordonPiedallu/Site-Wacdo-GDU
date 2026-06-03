@@ -2,12 +2,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    outline: none;
 }
 
 body {
     font-family: "Heebo", sans-serif;
     width: 100%;
     overflow-x: hidden;
+    outline: none;
 }
 
 #accueil {
@@ -138,20 +140,19 @@ nav {
 }
 
 .produit {
-    display: flexbox;
     align-content: center;
     border: 1px solid;
     border-color: #6E6E6E;
     border-radius: 8px;
 }
 
-#type-produit {
+.type-produit {
     font-weight: 400;
     font-size: 20px;
     padding: 10px;
 }
 
-#prix-produit {
+.prix-produit {
     font-weight: 400;
     font-size: 18px;
     padding: 10px;
@@ -320,12 +321,14 @@ nav {
         max-width: 55%;
     }
     #slider {
-        width: 90%;
-        max-width: 90%;
+        width: 70%;
+        max-width: 70%;
+        overflow-x: auto;
     }
     #resume-commande {
         width: 260px;
     }
+
 }
 
 /* ── Mobile (≤ 768px) ── */
@@ -345,6 +348,7 @@ nav {
         max-width: 100%;
         margin-left: 4%;
         margin-right: 4%;
+        max-height: fit-content;
     }
 
     #slider {
@@ -357,14 +361,13 @@ nav {
         position: fixed;
         bottom: 0;
         top: auto;
-        left: 0;
-        right: 0;
         width: 100%;
+        max-width: 100%;
         height: auto;
-        max-height: 45vh;
+        max-height: 150px;
         overflow-y: auto;
         border-radius: 16px 16px 0 0;
-        box-shadow: 0 -4px 20px rgba(230, 17, 17, 0.12);
+    
     }
 
     nav {
@@ -375,4 +378,10 @@ nav {
     body {
         padding-bottom: 120px;
     }
+
+    #num-chelavet {
+        max-width: 80%;
+        width: 200px;
+    }
+
 }
