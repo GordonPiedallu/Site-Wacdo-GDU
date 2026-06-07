@@ -4,6 +4,10 @@
     box-sizing: border-box;
     outline: none;
 }
+a {
+    color: black;
+    text-decoration: none;
+}
 
 body {
     font-family: "Heebo", sans-serif;
@@ -27,6 +31,8 @@ nav {
     width: 100%;
     padding: 0;
     margin: 0;
+    flex-direction: column;
+    align-items: center;
 }
 
 #banniere-main {
@@ -196,8 +202,8 @@ nav {
     right: 0;
     top: 0;
     height: 100%;
-    width: 30%;
-    max-width: 30%;
+    width: 25%;
+    max-width: 25%;
     background-color: #F1F1F1;
     align-items: center;
 }
@@ -232,15 +238,13 @@ nav {
 #num-chevalet{
     background-color: white;
     border-radius: 16px;
-    position: absolute;
     display: flex;
     flex-direction: column;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 90%;
+
     max-width: 698px;
-    height: auto;
+    max-height: 441px;
+    width: 90%;
+    
 }
 
 #title-chevalet{
@@ -274,12 +278,14 @@ nav {
 }
 #chiffre-chevalet{
     display: flex;
+    flex: 1;
     text-align: center;
     justify-content: center;
-    gap: 50px;
+    gap: clamp(10px, 3vw, 50px);
+    max-width: 165px;
 }
 #chiffre-chevalet input{
-    width: 155px;
+    flex: 1;
     height: 121px;
     text-align: center;
     border: none;
@@ -287,6 +293,7 @@ nav {
     font-size: 96px;
     outline: none;
     font-weight: 700;
+    max-width: 165px;
 }
 #btn-chevalet {
     padding: 16px 32px;
@@ -299,25 +306,75 @@ nav {
     font-size: 16px;
     border: none;
     cursor: pointer;
-    margin-top: 40%;
     display: block;
+    margin-top: 5%;
 
 }
 #img-chevalet{
     max-width: 259px;
     max-height: 265px;
-    position:absolute;
-    top: 130px;
-    left: 50%;
-    transform: translateX(-50%);
 }
+#button-resume {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#panier-bas {
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+    padding: 2%;
+    width: 100%;
+}
+#button-abandon {
+    width: 125px;
+    height: 52px;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    padding: 2px;
+}
+#button-payer {
+    width: 110px;
+    height: 55px;
+    background-color: #FFC836;
+    border: solid 2px #FFC836;
+    border-radius: 8px;
+}
+#prix {
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 35px;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #000000;
+    padding-top: 15px;
+    max-width: 100%;
+}
+#commande-info{
+        border-bottom: 1px solid #000000;
+        width: 85%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+}
+#numéro-commande{
+    font-size: 42px;
+    font-weight: 400;
+}
+#ligne-commande{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+
 
 
 
 
 /* ── Tablette (≤ 1024px) ── */
 @media (max-width: 1024px) {
-    #zone-produit {
+    #zone-produit{
         max-width: 55%;
     }
     #slider {
@@ -327,6 +384,11 @@ nav {
     }
     #resume-commande {
         width: 260px;
+    }
+    #chiffre-chevalet input{
+        max-width: 60%;
+        font-size: 65px;
+
     }
 
 }
@@ -348,7 +410,7 @@ nav {
         max-width: 100%;
         margin-left: 4%;
         margin-right: 4%;
-        max-height: fit-content;
+        
     }
 
     #slider {
@@ -363,8 +425,8 @@ nav {
         top: auto;
         width: 100%;
         max-width: 100%;
-        height: auto;
-        max-height: 150px;
+        height: 45vh;
+        max-height: 200px;
         overflow-y: auto;
         border-radius: 16px 16px 0 0;
     
@@ -376,12 +438,17 @@ nav {
     }
 
     body {
-        padding-bottom: 120px;
+        padding-bottom: 220px;
     }
 
-    #num-chelavet {
+    #choix-chelavet {
         max-width: 80%;
-        width: 200px;
+        width: 30px;
+    }
+    #chiffre-chevalet input{
+        max-width: 30%;
+        font-size: 65px;
+        
     }
 
 }
