@@ -13,11 +13,21 @@
 <body>
     <section id="overlay-selection">
         <div id="choix-overlay">
-            <h1 id="overlay-title">Une grosse faim ?</h1>
-            <p id="overlay-text">Le menu maxi Best Of comprend un sandwich, une grande frite et une boisson 50 Cl</p>
+             <img src="images/supprimer.png" id="imgfermer" alt="Croix de fermeture">
+            <h1 id="overlay-title">Une petite soif ?</h1>
+            <p id="overlay-text">Choisissez la taille de votre boisson,  +0.50€ pour le format 50 Cl</p>
             <div id="icone-choix">
-            <a class="choix-menu" href="#"><img src="images/illustration-maxi-best-of.png" alt="Maxi Best Of" id="choix-emp">Menu Maxi Best Of</a>   
-            <a class="choix-menu" href="#"><img src="images/illustration-best-of.png" alt="Best of" id="choix-emp"> Menu Best of</a>
+            <a class="choix-menu" id="choix-pboisson" href="#"><img src="boissons/coca-cola.png" alt="Boisson 30Cl">30 Cl</a>   
+            <a class="choix-menu" id="choix-gboisson" href="#"><img src="boissons/coca-cola.png" alt="Boisson 50Clm">50 Cl</a>
+            </div>
+         <div id="compteur">
+            <button type="button" id="btn-moins">-</button>
+            <span id="quantite">1</span>
+            <button type="button" id="btn-plus">+</button>
+        </div>
+        <div id="bouton-overlay">
+            <button type="button" id="btn-annuler">Annuler</button>
+            <button type="button" id="btnajout-panier">Ajouter a ma commande</button>
         </div>
         </div>
     </section>  

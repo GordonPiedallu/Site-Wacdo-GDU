@@ -323,8 +323,8 @@ nav {
     display: flex;
     flex-direction: column;
     margin-top: auto;
-    padding: 2%;
-    width: 100%;
+    padding: 2% 0;
+    width: 95%;
 }
 #button-abandon {
     width: 125px;
@@ -352,7 +352,7 @@ nav {
 }
 #commande-info{
         border-bottom: 1px solid #000000;
-        width: 85%;
+        width: 95%;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -366,7 +366,145 @@ nav {
     justify-content: space-between;
     width: 100%;
 }
+#overlay-selection{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+#choix-overlay{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    background-color: white;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 698px;
+    padding: 20px;
+    }
+    #choix-pboisson img {
+    width: 94px;
+    height: 104px;
+    max-height: 100%;
+}
 
+#choix-gboisson img {
+    max-height: 100%;
+    height: 134px;
+    width: 154px;
+}
+#choix-overlay .choix-menu{
+    height: 200px
+
+}
+#compteur{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    align-items: center;
+    font-size: 40px;
+    font-weight: 700;
+
+
+}
+#btn-moins{
+    border: 2px solid #FFC836;
+    border-radius: 8px;
+    width: 76px;
+    max-width: 76px;
+    height: 76px;
+    max-height: 76px;
+    margin: 10px;
+    background-color: #FFC836;
+    font-weight: 700;
+    font-size: 40px;
+
+}
+#btn-plus{
+    border: 2px solid #FFC836;
+    border-radius: 8px;
+    width: 76px;
+    max-width: 76px;
+    height: 76px;
+    max-height: 76px;
+    margin: 10px;
+    background-color: #FFC836;
+    font-weight: 700;
+    font-size: 40px;
+}
+#btn-annuler {
+    width: 127px;
+    max-width: 127px;
+    height: 55px;
+    max-height: 55px;
+    background-color: white;
+    font-size: 18px;
+    font-weight: 700;
+    border:  2px solid black;
+    border-radius: 8px;
+}
+#btnajout-panier{
+    width: 257px;
+    max-width: 257px;
+    height: 55px;
+    max-height: 55px;
+    background-color: #FFC836;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 8px;
+    border: 1px solid #FFC836;
+}
+#bouton-overlay{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding-left: 20%;
+}
+#btn-neworder {
+    padding: 16px 32px;
+    max-width: 221px;
+    max-height:max-content;   
+    background-color: #FFC836;
+    border-radius: 8px;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    display: block;
+    margin-top: 5%;
+}
+#new-order{
+    background-color: white;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    max-width: 698px;
+    max-height: 441px;
+    width: 90%;
+    height: 348px;
+}
+#title-neworder{
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 35px;
+}
+#texte-neworder{
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 50px;
+}
+#abientot{
+    max-width: 90%;
+}
+#imgfermer{
+    display: flex;
+    margin-left: 90%;
+}
 
 
 
@@ -390,10 +528,20 @@ nav {
         font-size: 65px;
 
     }
+        #title-neworder{
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    }
+    #texte-neworder{
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    }
 
 }
 
-/* ── Mobile (≤ 768px) ── */
+/* ── M/G Mobile (≤ 768px) ── */
 @media (max-width: 768px) {
     #accueil {
         min-height: 100svh;
@@ -450,5 +598,40 @@ nav {
         font-size: 65px;
         
     }
-
+    #bouton-overlay{
+        flex-direction: column;
+        padding-left: 0%;
+    }
+    #title-neworder{
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    }
+    #texte-neworder{
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    }
+    #abientot{
+    max-width: 90%;
+    }
+    #new-order{
+        padding: 20px;
+    }
+}
+/* ── Mobile (≤ 426px) ── */
+@media (max-width: 426px) {
+    #new-order{
+        padding: 4px;
+    }
+    #title-neworder{
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    }
+    #texte-neworder{
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    }
 }
