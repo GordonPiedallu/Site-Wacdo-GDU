@@ -1,14 +1,26 @@
-//const arrowLeft = document.GetElmentById('arrow-left');
-//const arrowRight = document.getElementById('arrow-right');
-//const categories = 
-
-fetch('categories.json', {
-    headers: {
-        'Authorization': 'Bearer '
-    }
-})
+fetch('categories.json',)
 .then(data => data.json())
 .then (data =>  {
-    console.log(data);
-})
-//<a class="produit-slider" href="main-menu.html"><img src="categories/menus.png" class="image-slider" alt="Menu"><span class="text-slider">Menus</span></a>
+    data.forEach(categorie => {
+        const categorieElement = document.createElement('div');
+            categorieElement.classList.add('produit-slider');
+        const imgElement = document.createElement('img');
+            imgElement.classList.add('image-slider');
+            imgElement.src = categorie.image;
+            categorieElement.appendChild(imgElement);
+            
+        const typeElement = document.createElement('span');
+            typeElement.classList.add('text-slider');
+            typeElement.textContent = categorie.title;
+            categorieElement.appendChild(typeElement);
+        const sliderContainer = document.getElementById('slider');
+            sliderContainer.appendChild(categorieElement);
+
+        categorieElement.addEventListener('click', () => {
+            const produitsContainer = document.getElementById('zone-produit');
+            produitsContainer.innerHTML = '';
+            chargerProduits(categorie.title);
+        });
+    })});
+
+    

@@ -43,6 +43,8 @@ nav {
 .imgproduit {
     max-width: 181.66px;
     max-height: 181.66px;
+    width: 100%;
+    object-fit: contain;
 }
 
 #texte-emplacement {
@@ -150,6 +152,8 @@ nav {
     border: 1px solid;
     border-color: #6E6E6E;
     border-radius: 8px;
+    align-items: center;
+    text-align:center;
 }
 
 .type-produit {
