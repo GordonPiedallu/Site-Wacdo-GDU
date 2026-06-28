@@ -1,5 +1,5 @@
 {
-    "menus":[
+    "Menus": [
         {
             "id": 1,
             "nom":"Menu Le 280",
@@ -51,7 +51,7 @@
         {
             "id": 9,
             "nom":"Menu Royal Bacon",
-            "prix": 7.05,
+            "prix": 7.50,
             "image": "/burgers/ROYALBACON.png"
         },
         {
@@ -80,7 +80,7 @@
         }
 
     ],
-    "burgers":[
+    "Burgers":[
         {
             "id": 14,
             "nom":"Le 280",
@@ -160,7 +160,7 @@
             "image": "/burgers/SIGNATURE_BEEF_BBQ_BURGER_(1_VIANDE).png"
         }
     ],
-    "boissons":[
+    "Boissons":[
         {
             "id": 27,
             "nom":"Coca Cola",
@@ -210,7 +210,7 @@
             "image": "/boissons/jus-pomme-bio.png"
         }
     ],
-    "frites":[
+    "Frites":[
         {
             "id": 35,
             "nom":"Petite Frite",
@@ -242,7 +242,7 @@
             "image": "/frites/GRANDE_POTATOES.png"
         }
     ],
-    "encas":[
+    "Encas":[
         {
             "id": 40,
             "nom":"Cheeseburger",
@@ -269,7 +269,7 @@
         }
 
     ],
-    "desserts":[
+    "Desserts":[
         {
             "id": 44,
             "nom":"Brownie",
@@ -325,7 +325,7 @@
             "image": "/desserts/sunday.png"
         }
     ],
-    "sauces":[
+    "Sauces":[
         {
             "id": 53,
             "nom":"Classic Barbecue",
@@ -369,7 +369,7 @@
             "image": "/sauces/sauce-pommes-frite.png"
         }
     ],
-    "salades":[
+    "Salades":[
         {
             "id": 60,
             "nom":"Petite Salade",
@@ -389,7 +389,7 @@
             "image": "/salades/SALADE_ITALIAN_MOZZA.png"
         }
     ],
-    "wraps":[
+    "Wraps":[
         {
             "id": 63,
             "nom":"MC Wrap chevre",
