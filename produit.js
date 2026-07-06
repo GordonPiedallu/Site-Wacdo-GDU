@@ -24,11 +24,17 @@ function chargerProduits(categories) {
                 prixElement.textContent = produit.prix.toFixed(2) + '€';
                 produitElement.appendChild(prixElement);
                 produitElement.addEventListener('click', () => {
+
+                    if (categories === 'Menus') {
+                        const overlay = document.getElementById('overlay-selection');
+                        overlay.style.display = 'block';
+                    }
+                    else {
                     panier.push ({
                         nom : produit.nom,
                         prix : produit.prix,
                         type : categories
-                    });
+                    })};
 afficherPanier()
 calculerTotal()                    
                 })
@@ -36,12 +42,23 @@ calculerTotal()
 
 chargerProduits('Menus');
 
-                function afficherPanier () {
+            function  afficherPanier () {
                     const listePanier = document.querySelector('#liste-articles');
                     listePanier.innerHTML = '';
-                    panier.forEach (article => {
+                    panier.forEach ((article, index)  => {
                     const articleElement = document.createElement('div');
-                    articleElement.textContent = article.nom + ' - ' + article.prix.toFixed(2) + '€';
+                    articleElement.classList.add('ligne-panier');
+                    const textElement = document.createElement('span');
+                    textElement.textContent = article.nom + ' - ' + article.prix.toFixed(2) + '€';
+                    const boutonSupprimer = document.createElement('img');
+                    boutonSupprimer.src = 'images/trash.png'
+                    boutonSupprimer.addEventListener('click', () => {
+                        panier.splice(index, 1);
+                        afficherPanier();
+                        calculerTotal(); 
+                    })
+                    articleElement.appendChild(textElement);
+                    articleElement.appendChild(boutonSupprimer);
                     listePanier.appendChild(articleElement);
              })};
 
@@ -53,6 +70,15 @@ chargerProduits('Menus');
                     const prixTotal = document.getElementById('total-prix');
                     prixTotal.textContent = total.toFixed(2) +'€';
                     }
-                  
+                // function pour fermer l'overlay
+                const overlay = document.getElementById('overlay-selection');
+                const fermerOverlay = document.getElementById('imgfermer');
+                const annulerOverlay = document.getElementById('btn-annuler');
+                fermerOverlay.addEventListener('click', () => {
+                    overlay.style.display = 'none';
+                });
+                annulerOverlay.addEventListener ('click' , () => {
+                    overlay.style.display = 'none';
+                })
+
                 
-    

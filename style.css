@@ -23,6 +23,9 @@ body {
     background-size: cover;
     min-height: 100vh;
 }
+#overlay-selection {
+    display: none;
+}
 
 nav {
     position: relative;
@@ -39,6 +42,12 @@ nav {
     width: 100%;
     display: block;
 }
+
+.ligne-panier {
+    display: flex;
+    justify-content: space-between;
+}
+
 
 .imgproduit {
     max-width: 181.66px;
