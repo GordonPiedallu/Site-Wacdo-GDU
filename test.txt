@@ -1,135 +1,78 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
-    <title>Borne Wacdo</title>
-</head>
-<body>
-    <section id="slider">
-        <div id="fleche-slider">
-            <img src="images/fleche-slider.png" alt="Fleche gauche bannière">
+<div id="choix-overlay">
+             <img src="images/supprimer.png" id="imgfermer" alt="Croix de fermeture">
+            <h1 id="overlay-title">Une petite soif ?</h1>
+            <p id="overlay-text">Choisissez la taille de votre boisson,  +0.50€ pour le format 50 Cl</p>
+            <div id="icone-choix">
+            <a class="choix-menu" id="choix-pboisson" href="#"><img src="boissons/coca-cola.png" alt="Boisson 30Cl">30 Cl</a>   
+            <a class="choix-menu" id="choix-gboisson" href="#"><img src="boissons/coca-cola.png" alt="Boisson 50Clm">50 Cl</a>
+            </div>
+         <div id="compteur">
+            <button type="button" id="btn-moins">-</button>
+            <span id="quantite">1</span>
+            <button type="button" id="btn-plus">+</button>
         </div>
-        <a class="produit-slider" href="main-menu.html"><img src="categories/menus.png" class="image-slider" alt="Menu"><span class="text-slider">Menus</span></a>
-        <a class="produit-slider" href="burgers.html"><img src="categories/burgers.png" class="image-slider" alt="Sandwich"><span class="text-slider">Sandwichs</span></a>
-        <a class="produit-slider" href="wraps.html"><img src="categories/wraps.png" class="image-slider"  alt="Wraps"><span class="text-slider">Wraps</span></a>
-        <a class="produit-slider" href="frites.html"><img src="categories/frites.png" class="image-slider" alt="Frites"><span class="text-slider">Frites</span></a>
-        <a class="produit-slider" href="boisson.html"><img src="categories/boissons.png" class="image-slider" alt="Boissons Froide"><span class="text-slider">Boissons</span></a>
-        <a class="produit-slider" href="encas.html"><img src="categories/encas.png" class="image-slider" alt="Encas"><span class="text-slider">Encas</span></a>
-        <a class="produit-slider" href="desserts.html"><img src="categories/desserts.png" class="image-slider" alt="Desserts"><span class="text-slider">Desserts</span></a>
-        <a class="produit-slider" href="salades.html"><img src="categories/salades.png" class="image-slider" alt="Salades"><span class="text-slider">Salades</span></a>
-        <a class="produit-slider" href="sauces.html"><img src="categories/sauces.png" class="image-slider" alt="Salades"><span class="text-slider">Sauces</span></a>
-        <div id="fleche-slider-inv">   
-            <img src="images/fleche-slider-inv.png" alt="Fleche droite bannière">
-        </div>         
-    </section>
-     <section id="resume-commande">
-        <div id="commande">
-        <img id="logo" src="images/logo.png" alt="Logo Wacdo">
-        </div>
-        <div id="commande-info">
-        <div id="ligne-commande">
-            <p id="text-commande">Commande numéro</p>
-            <span id="numéro-commande">72</span>
-        </div>
-            <span id="endroit-numero">Sur place: 326</span>
-        </div>
-        <div id="liste-articles"></div>
-        <div id="panier-bas">
-        <div id="prix">
-            <span id="text-prix">TOTAL (TTC)</span>
-            <span id="total-prix"></span>
-        </div>
-        <div id="button-resume">
-            <button id="button-abandon">Abandon</button>
-            <button id="button-payer">Payer</button>
+        <div id="bouton-overlay">
+            <button type="button" id="btn-annuler">Annuler</button>
+            <button type="button" id="btnajout-panier">Ajouter a ma commande</button>
         </div>
         </div>
-    </section>
-    <section id="text-menu">
-    <h1 id="title-menu">Nos desserts</h1>
-    <p id="subtitles-menu">Une petite soif, sucrée, légére, rafraichissante.</p>
-    </section>
-    <section id="zone-produit">
-        <div class="produit">
-            <img class="imgproduit" src="desserts/brownies.png" alt="Brownies">
-            <p class="type-produit">Brownies</p>
-            <p class="prix-produit">2.50€</p>
-        </div>
-        <div class="produit">
-            <img class="imgproduit" src="desserts/cheesecake_choconuts_M&M_s.png" alt="Cheesecake Choconuts M&M's">
-            <p class="type-produit">Cheesecake Choconuts M&M's</p>
-            <p class="prix-produit">2.50€</p>
-        </div>
-        <div class="produit">
-            <img class="imgproduit" src="desserts/cheesecake_fraise.png" alt="Cheesecake fraise">
-            <p class="type-produit">Cheesecake fraise</p>
-            <p class="prix-produit">2.50€</p>
-        </div>
-        <div class="produit">
-            <img class="imgproduit" src="desserts/cookie.png" alt="Cookie">
-            <p class="type-produit">Cookie</p>
-            <p class="prix-produit">2.50€</p>
-        </div>
-        <div class="produit">
-            <img class="imgproduit" src="desserts/doghnut.png" alt="Donuts">
-            <p class="type-produit">Donuts</p>
-            <p class="prix-produit">1.90€</p>
-        </div>
-        <div class="produit">
-            <img class="imgproduit" src="desserts/macarons.png" alt="Macarons">
-            <p class="type-produit">Macarons</p>
-            <p class="prix-produit">1.90€</p>
-        </div>
-        <div class="produit">
-            <img class="imgproduit" src="desserts/MCFLEURY.png" alt="Mc'Fleury">
-            <p class="type-produit">Mc'Fleury</p>
-            <p class="prix-produit">1.90€</p>
-        </div>
-        <div class="produit">
-            <img class="imgproduit" src="desserts/muffin.png" alt="Muffin">
-            <p class="type-produit">Muffin</p>
-            <p class="prix-produit">2.20€</p>
-        </div>
-        <div class="produit">
-            <img class="imgproduit" src="desserts/sunday.png" alt="Sunday">
-            <p class="type-produit">Sunday</p>
-            <p class="prix-produit">1.90€</p>
-        </div>
-    </section>
-   
-    
-
-</body>
-</html>
 
 
-
-
-
-
-            
-    data.desserts.forEach(produit => {
-        const produitElement = document.createElement('div');
-            produitElement.classList.add('produit');
-        const imgElement = document.createElement('img');
-            imgElement.classList.add('imgproduit');
-            imgElement.src = produit.image;
-            produitElement.appendChild(imgElement);
-
-        const typeElement = document.createElement('p');
-            typeElement.classList.add('type-produit');
-            typeElement.textContent = produit.nom;
-            produitElement.appendChild(typeElement);
-
-        const prixElement = document.createElement('p');
-            prixElement.classList.add('prix-produit');
-            prixElement.textContent = `${produit.prix.toFixed(2)}€`;
-            produitElement.appendChild(prixElement);
-
-            produitsContainer.appendChild(produitElement);
-    })});
+         const overlayModel = document.createElement('div');
+                overlayModel.id = 'choix-overlay';
+                const imgFermer = document.createElement('img');
+                imgFermer.src = 'images/supprimer.png';
+                imgFermer.id = 'imgfermer';
+                imgFermer.alt = 'Croix de fermeture';
+                overlayModel.appendChild(imgFermer);
+                const h1 = document.createElement('h1');
+                const p = document.createElement('p');
+                overlayModel.classList.add('h1');
+                h1.textContent = 'Une petite soif ?';
+                overlayModel.appendChild(h1);
+                overlayModel.classList.add('p');
+                p.textContent = 'Choisissez la taille de votre boisson,  +0.50€ pour le format 50 Cl';
+                overlayModel.appendChild(p);
+                overlayModel.classList.add('icone-choix');
+                const choixPBoisson = document.createElement('a');
+                choixPBoisson.classList.add('choix-menu');
+                choixPBoisson.href = '#';
+                const imgPBoisson = document.createElement('img');
+                imgPBoisson.src = 'boissons/coca-cola.png';
+                imgPBoisson.alt = 'Boisson 30Cl';
+                choixPBoisson.appendChild(imgPBoisson);
+                overlayModel.appendChild(choixPBoisson);
+                const choixGBoisson = document.createElement('a');
+                choixGBoisson.classList.add('choix-menu');
+                choixGBoisson.href = '#';
+                const imgGBoisson = document.createElement('img');
+                imgGBoisson.src = 'boissons/coca-cola.png';
+                imgGBoisson.alt = 'Boisson 50Cl';
+                choixGBoisson.appendChild(imgGBoisson);
+                overlayModel.appendChild(choixGBoisson);
+                overlayModel.classList.add('compteur');
+                const btnMoins = document.createElement('button');
+                btnMoins.type = 'button';
+                btnMoins.id = 'btn-moins';
+                btnMoins.textContent = '-';
+                overlayModel.appendChild(btnMoins);
+                const quantiteSpan = document.createElement('span');
+                quantiteSpan.id = 'quantite';
+                quantiteSpan.textContent = '1';
+                overlayModel.appendChild(quantiteSpan);
+                const btnPlus = document.createElement('button');
+                btnPlus.type = 'button';
+                btnPlus.id = 'btn-plus';
+                btnPlus.textContent = '+';
+                overlayModel.appendChild(btnPlus);
+                overlayModel.classList.add('bouton-overlay');
+                const btnAnnuler = document.createElement('button');
+                btnAnnuler.type = 'button';
+                btnAnnuler.id = 'btn-annuler';
+                btnAnnuler.textContent = 'Annuler';
+                overlayModel.appendChild(btnAnnuler);
+                const btnAjoutPanier = document.createElement('button');
+                btnAjoutPanier.type = 'button';
+                btnAjoutPanier.id = 'btnajout-panier';
+                btnAjoutPanier.textContent = 'Ajouter à ma commande';
+                overlayModel.appendChild(btnAjoutPanier);
