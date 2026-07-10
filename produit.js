@@ -124,122 +124,32 @@ chargerProduits('Menus');
                     choixAccompagnement ()
                 });
             }
-            function choixAccompagnement () {
-                const overlay = document.getElementById('contenu-overlay');
+function choixAccompagnement() {
+    fetch('produits.json')
+        .then(response => response.json())
+        .then(data => {
+            const overlay = document.getElementById('contenu-overlay');
                 overlay.innerHTML = '';
-                const titreModal = document.createElement('h1');
-                titreModal.id = 'overlay-title';
-                const sousTitreModal = document.createElement('p');
-                sousTitreModal.id = 'overlay-text';
-                const conteneurChoix = document.createElement('div');
-                titreModal.textContent = 'Choisissez votre accompagnement';
-                sousTitreModal.textContent = 'Frites, potatoes, la pomme de terre dans tous ses états';
-                overlay.appendChild(titreModal);
-                overlay.appendChild(sousTitreModal);
-                conteneurChoix.id = 'icone-choix';
-                const element1 = document.createElement('div');
-                element1.classList.add('choix-menu');
-                const imgElement1 = document.createElement('img');
-                const spanElement1 = document.createElement('span');
-                imgElement1.src = 'images/illustration-best-of.png';
-                spanElement1.textContent = 'Best Of';
-                element1.appendChild(imgElement1);
-                element1.appendChild(spanElement1);
-                conteneurChoix.appendChild(element1);
-                const element2 = document.createElement('div');
-                element2.classList.add('choix-menu');
-                const imgElement2 = document.createElement('img');
-                const spanElement2 = document.createElement('span');
-                imgElement2.src = 'images/illustration-maxi-best-of.png';
-                spanElement2.textContent = 'Maxi Best Of';
-                element2.appendChild(imgElement2);
-                element2.appendChild(spanElement2);
-                conteneurChoix.appendChild(element2);
-                overlay.appendChild(conteneurChoix);
-                element1.addEventListener('click', () => {
-                    choixBoisson ()
-                });
-                element2.addEventListener('click', () => {
-                    choixTailleBoisson ()
-                })};
+            data.Frites.forEach(produit => {
+                const produitElement = document.createElement('div');
+                produitElement.classList.add('produit');
 
-                function choixBoisson () {
-                    const overlay = document.getElementById('contenu-overlay');
-                    overlay.innerHTML = '';
-                    const overlay = document.getElementById('contenu-overlay');
-                overlay.innerHTML = '';
-                const titreModal = document.createElement('h1');
-                titreModal.id = 'overlay-title';
-                const sousTitreModal = document.createElement('p');
-                sousTitreModal.id = 'overlay-text';
-                const conteneurChoix = document.createElement('div');
-                titreModal.textContent = 'Choisissez votre accompagnement';
-                sousTitreModal.textContent = 'Frites, potatoes, la pomme de terre dans tous ses états';
-                overlay.appendChild(titreModal);
-                overlay.appendChild(sousTitreModal);
-                conteneurChoix.id = 'icone-choix';
-                const element1 = document.createElement('div');
-                element1.classList.add('choix-menu');
-                const imgElement1 = document.createElement('img');
-                const spanElement1 = document.createElement('span');
-                imgElement1.src = 'images/illustration-best-of.png';
-                spanElement1.textContent = 'Best Of';
-                element1.appendChild(imgElement1);
-                element1.appendChild(spanElement1);
-                conteneurChoix.appendChild(element1);
-                const element2 = document.createElement('div');
-                element2.classList.add('choix-menu');
-                const imgElement2 = document.createElement('img');
-                const spanElement2 = document.createElement('span');
-                imgElement2.src = 'images/illustration-maxi-best-of.png';
-                spanElement2.textContent = 'Maxi Best Of';
-                element2.appendChild(imgElement2);
-                element2.appendChild(spanElement2);
-                conteneurChoix.appendChild(element2);
-                overlay.appendChild(conteneurChoix);
-                element1.addEventListener('click', () => {
-                    choixBoisson ()
-                });
-                element2.addEventListener('click', () => {
-                    choixTailleBoisson ()
-                });
-                }
-                function chargerProduits(categories) {
-                    fetch('produits.json')
-                        .then(data => data.json())
-                        .then(data => {
-                        console.log(data)
-                        data[categories].forEach(produit => {
-                        const produitElement = document.createElement('div');
-                        produitElement.classList.add('produit');;                
-                        const imgElement = document.createElement('img');
-                        imgElement.classList.add('imgproduit');
-                        imgElement.src = produit.image;
-                        produitElement.appendChild(imgElement);
-                         nomElement = document.createElement('p');
-                        nomElement.classList.add('text-produit');
-                        nomElement.textContent = produit.nom;
-                        produitElement.appendChild(nomElement);
-                        produitsContainer.appendChild(produitElement);
-                        const prixElement = document.createElement('p');
-                        prixElement.classList.add('prix-produit');
-                        prixElement.textContent = produit.prix.toFixed(2) + '€';
-                        produitElement.appendChild(prixElement);
-                        produitElement.addEventListener('click', () => {
+                const imgElement = document.createElement('img');
+                imgElement.classList.add('imgproduit');
+                imgElement.src = produit.image;
+                produitElement.appendChild(imgElement);
 
-                    if (categories === 'Menus') {
-                        const overlay = document.getElementById('overlay-selection');
-                        overlay.style.display = 'block';
-                        choixMenu();
+                const nomElement = document.createElement('p');
+                nomElement.classList.add('text-produit');
+                nomElement.textContent = produit.nom;
+                produitElement.appendChild(nomElement);
 
-                    }
-                    else {
-                    panier.push ({
-                        nom : produit.nom,
-                        prix : produit.prix,
-                        type : categories
-                    })};
-                    afficherPanier()
-                    calculerTotal()                    
-                    })
-                    })})};
+                const prixElement = document.createElement('p');
+                prixElement.classList.add('prix-produit');
+                prixElement.textContent = produit.prix.toFixed(2) + " €";
+                produitElement.appendChild(prixElement);
+
+                produitsContainer.appendChild(produitElement);
+            });
+        });
+}
