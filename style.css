@@ -272,7 +272,6 @@ nav {
 
 }
 .choix-menu{
-    margin: auto;
     width: clamp(200px, 42%, 285px);
     height: auto;
     min-height: 160px;
@@ -402,9 +401,11 @@ nav {
     background-color: white;
     border-radius: 16px;
     width: 90%;
-    max-width: 698px;
+    max-width: 1063px;
     padding: 20px;
-    }
+    max-height: 550px;
+    height: 90%;
+}
     #choix-pboisson img {
     width: 94px;
     height: 104px;

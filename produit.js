@@ -1,6 +1,6 @@
 const produitsContainer = document.getElementById('zone-produit');
 let panier =[]
-
+let typeMenu = 'null'; 
 
 function chargerProduits(categories) {
     fetch('produits.json')
@@ -118,38 +118,60 @@ chargerProduits('Menus');
                 conteneurChoix.appendChild(element2);
                 overlay.appendChild(conteneurChoix);
                 element1.addEventListener('click', () => {
-                    choixAccompagnement ()
+                    typeMenu = 'Best Of';
+                    if (typeMenu.includes('Best Of')) {
+                        choixAccompagnement();
+                    }
                 });
                 element2.addEventListener('click', () => {
-                    choixAccompagnement ()
+                    typeMenu = 'Maxi Best Of';
+                    if (typeMenu.includes('Maxi Best Of')) {
+                        choixAccompagnement();
+                    }
                 });
             }
 function choixAccompagnement() {
-    fetch('produits.json')
-        .then(response => response.json())
-        .then(data => {
-            const overlay = document.getElementById('contenu-overlay');
+   const overlay = document.getElementById('contenu-overlay');
                 overlay.innerHTML = '';
-            data.Frites.forEach(produit => {
-                const produitElement = document.createElement('div');
-                produitElement.classList.add('produit');
-
-                const imgElement = document.createElement('img');
-                imgElement.classList.add('imgproduit');
-                imgElement.src = produit.image;
-                produitElement.appendChild(imgElement);
-
-                const nomElement = document.createElement('p');
-                nomElement.classList.add('text-produit');
-                nomElement.textContent = produit.nom;
-                produitElement.appendChild(nomElement);
-
-                const prixElement = document.createElement('p');
-                prixElement.classList.add('prix-produit');
-                prixElement.textContent = produit.prix.toFixed(2) + " €";
-                produitElement.appendChild(prixElement);
-
-                produitsContainer.appendChild(produitElement);
-            });
-        });
-}
+                const titreModal = document.createElement('h1');
+                titreModal.id = 'overlay-title';
+                const sousTitreModal = document.createElement('p');
+                sousTitreModal.id = 'overlay-text';
+                const conteneurChoix = document.createElement('div');
+                titreModal.textContent = 'Choisissez votre accompagnement';
+                sousTitreModal.textContent = 'Frites, Potatoes, la pomme de terre dans tous ses états';
+                overlay.appendChild(titreModal);
+                overlay.appendChild(sousTitreModal);
+                conteneurChoix.id = 'icone-choix';
+                const element1 = document.createElement('div');
+                element1.classList.add('choix-menu');
+                const imgElement1 = document.createElement('img');
+                const spanElement1 = document.createElement('span');
+                imgElement1.src = 'frites/GRANDE_FRITE.png';
+                spanElement1.textContent = 'Frites';
+                element1.appendChild(imgElement1);
+                element1.appendChild(spanElement1);
+                conteneurChoix.appendChild(element1);
+                const element2 = document.createElement('div');
+                element2.classList.add('choix-menu');
+                const imgElement2 = document.createElement('img');
+                const spanElement2 = document.createElement('span');
+                imgElement2.src = 'frites/GRANDE_POTATOES.png';
+                spanElement2.textContent = 'Potatoes';
+                element2.appendChild(imgElement2);
+                element2.appendChild(spanElement2);
+                conteneurChoix.appendChild(element2);
+                overlay.appendChild(conteneurChoix);
+                element1.addEventListener('click', () => {
+                    typeMenu = 'Best Of';
+                    if (typeMenu.includes('Best Of')) {
+                        choixAccompagnement();
+                    }
+                });
+                element2.addEventListener('click', () => {
+                    typeMenu = 'Maxi Best Of';
+                    if (typeMenu.includes('Maxi Best Of')) {
+                        choixAccompagnement();
+                    }
+                });
+            }
