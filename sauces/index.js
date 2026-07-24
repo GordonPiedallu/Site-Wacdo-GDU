@@ -1,1 +1,0 @@
-const btnSurPlace = document.getElementById('')

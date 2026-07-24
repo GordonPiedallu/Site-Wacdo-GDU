@@ -323,11 +323,36 @@ p#overlay-text {
     text-align: center;
     justify-content: center;
     gap: clamp(10px, 3vw, 50px);
-    max-width: 165px;
+    max-width: 100%;
+    width: 100%;
+    justify-content: center;
 }
+#overlay-paiement {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+}
+
+#chevalet-overlay {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 698px;
+    padding: 20px;
+    text-align: center;
+}
+
 #chiffre-chevalet input{
-    flex: 1;
-    height: 121px;
+    flex: 1; 
     text-align: center;
     border: none;
     border-bottom: 10px solid #D9D9D9;
@@ -335,6 +360,9 @@ p#overlay-text {
     outline: none;
     font-weight: 700;
     max-width: 165px;
+    max-width: 80px;
+    height: 80px;
+    font-size: 60px;
 }
 #btn-chevalet {
     padding: 16px 32px;
@@ -427,6 +455,27 @@ p#overlay-text {
     padding: 20px;
     max-height: 550px;
     height: 90%;
+}
+#overlay-paiement {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+}
+#overlay-paiement #choix-overlay {
+    background-image: url('images/OIP (1) 1.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: #f5f5f5;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
     #choix-pboisson img {
     width: 94px;

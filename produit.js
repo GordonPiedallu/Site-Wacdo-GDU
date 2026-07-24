@@ -1,5 +1,6 @@
 const produitsContainer = document.getElementById('zone-produit');
 const btnRetour = document.getElementById("btnRetour");
+const lieuCommande = localStorage.getItem('lieuCommande');
 
 let panier =[];
 let typeMenu = null; 
@@ -515,10 +516,17 @@ function choixSauce () {
 
         });
     }
-     //const boutonPayer = document.getElementById('button-payer');
-            //boutonPayer.addEventListener('click', () => {
-                
-            //});
+        const boutonPayer = document.getElementById('button-payer');
+            boutonPayer.addEventListener('click', () => {
+            localStorage.setItem('panier', JSON.stringify(panier));
+            localStorage.setItem('numeroCommande', numeroCommande);
+    
+            if (lieuCommande === 'sur-place') {
+            window.location.href = 'numero-chevalet.html';
+            } else {
+            window.location.href = 'fin-commande.html';
+            }
+            });
 
         function creationNumeroCommande () {
             const numOrder = document.getElementById('numéro-commande');
@@ -526,8 +534,8 @@ function choixSauce () {
             numOrder.textContent = numeroCommande;
            
     }
-
-
+            
+    
 
 
 
