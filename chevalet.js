@@ -19,8 +19,8 @@ const btnChevalet = document.getElementById('btn-chevalet');
                 numeroCommande: numeroCommande,
                 numeroChevalet: numeroChevalet,
                 date: new Date().toISOString(),
-                produits: panier,
-                total: panier.reduce((acc, article) => acc + article.prix * article.quantite, 0).toFixed(2)
+                produits: panierStockage,
+                total: panierStockage.reduce((acc, article) => acc + article.prix * article.quantite, 0).toFixed(2)
                 };
 
                 fetch('https://exemple-api/commande', {
@@ -31,10 +31,52 @@ const btnChevalet = document.getElementById('btn-chevalet');
                 body: JSON.stringify(commande)
                 })
                     .then(() => {
-                    panier = [];
+                    localStorage.removeItem("panier");
                     window.location.href = 'fin-commande.html';
                 })
-                .catch(() => {
-                alert('Erreur lors de l\'envoi de la commande');        
+               .catch((error) => {
+                    console.error(error);
+                    const recapCommande = {
+                        numeroCommande: numeroCommande,
+                        numeroChevalet: numeroChevalet,
+                        date: new Date().toISOString(),
+                        produits: panierStockage,
+                        total: panierStockage.reduce(
+                            (acc, article) => acc + article.prix * article.quantite,0).toFixed(2)
+                            };
+                        console.log("Récapitulatif créé :", recapCommande);
+
+                            localStorage.setItem(
+                                "recapCommande",
+                            JSON.stringify(recapCommande)
+                        );
+
+                        console.log(
+                        "Stockage local :",
+                        localStorage.getItem("recapCommande")
+                        );
+                            //localStorage.setItem("recapCommande",JSON.stringify(recapCommande)
+
+                    localStorage.removeItem("panier");
+                    alert("Votre commande a bien été prise en compte !");
+                    window.location.href = "fin-commande.html";
                 });
-                })
+                });
+            
+
+            const inputs = document.querySelectorAll('.chiffre');
+
+                inputs.forEach((input, index) => {
+                input.addEventListener('input', () => {
+                input.value = input.value.replace(/[^0-9]/g, '').slice(0, 1);
+
+                if (input.value.length === 1 && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+            });
+                input.addEventListener('keydown', (event) => {
+                    if (event.key === "Backspace" && input.value === "" && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
+});

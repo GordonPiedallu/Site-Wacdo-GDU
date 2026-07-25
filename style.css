@@ -606,6 +606,20 @@ p#overlay-text {
     display: block;
     margin-top: 5%;
 }
+#btn-imprim {
+    padding: 16px 32px;
+    max-width: 221px;
+    max-height:max-content;   
+    background-color: #FFC836;
+    border-radius: 8px;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    display: block;
+    margin-top: 5%;
+}
 #new-order{
     background-color: white;
     border-radius: 16px;
@@ -613,9 +627,12 @@ p#overlay-text {
     flex-direction: column;
     padding: 20px;
     max-width: 698px;
-    max-height: 441px;
+    min-height: 441px;
     width: 90%;
-    height: 348px;
+}
+#btn-finCommande {
+    display: flex;
+    gap: 10%;
 }
 #title-neworder{
     font-size: 42px;
