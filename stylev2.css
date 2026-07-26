@@ -159,6 +159,8 @@ nav {
     border-radius: 8px;
     text-decoration: none;
     color: black;
+    -webkit-text-fill-color: black;
+
 }
 
 /* Fenetre menu */
@@ -381,6 +383,8 @@ p#overlay-text {
 #chiffre-chevalet input:focus-visible {
     outline: none;
     border-bottom-color: #FFC836;
+    -webkit-text-fill-color: black;
+
 }
 
 #btn-chevalet,
@@ -399,6 +403,8 @@ p#overlay-text {
     display: block;
     margin-top: 5%;
     margin: auto;
+    -webkit-text-fill-color: black;
+
 }
 
 #img-chevalet {
@@ -435,6 +441,9 @@ p#overlay-text {
     background-color: #FFC836;
     border: solid 2px #FFC836;
     border-radius: 8px;
+    -webkit-text-fill-color: black;
+
+    
 }
 
 #prix {
@@ -518,6 +527,8 @@ p#overlay-text {
     padding: 10px;
     background-color: #FFC836;
     font-weight: 700;
+    -webkit-text-fill-color: black;
+
 }
 
 #bouton-boisson {
@@ -539,6 +550,8 @@ p#overlay-text {
     background-color: #FFC836;
     font-weight: 700;
     font-size: 40px;
+    -webkit-text-fill-color: black;
+
 }
 
 #btn-etape-suivante {
@@ -550,6 +563,8 @@ p#overlay-text {
     background-color: #FFC836;
     font-weight: 700;
     font-size: 16px;
+    -webkit-text-fill-color: black;
+
 }
 
 #btnRetour {
@@ -587,6 +602,8 @@ p#overlay-text {
     font-weight: 700;
     border-radius: 8px;
     border: 1px solid #FFC836;
+    -webkit-text-fill-color: black;
+
 }
 
 #bouton-overlay {
