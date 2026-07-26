@@ -14,6 +14,80 @@ let typeCommande = null;
 let numeroChevalet = null;
 let numeroCommande = null;
 
+function rendreAccessible(element, label) {
+    element.setAttribute('role', 'button');
+    element.setAttribute('tabindex', '0');
+    if (label) {
+        element.setAttribute('aria-label', label);
+    }
+    element.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            element.click();
+        }
+    });
+}
+
+// --- Accessibilité overlay ---
+let elementDeclencheur = null; 
+
+function elementsFocusablesOverlay() {
+    const conteneur = document.getElementById('choix-overlay');
+    return Array.from(
+        conteneur.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')
+    ).filter(el => el.offsetParent !== null);
+}
+
+function ouvrirOverlaySelection() {
+    elementDeclencheur = document.activeElement;
+    const overlay = document.getElementById('overlay-selection');
+    overlay.style.display = 'block';
+    const choixOverlay = document.getElementById('choix-overlay');
+    choixOverlay.setAttribute('role', 'dialog');
+    choixOverlay.setAttribute('aria-modal', 'true');
+    setTimeout(() => {
+        const elements = elementsFocusablesOverlay();
+        if (elements.length > 0) {
+            elements[0].focus();
+        }
+    }, 0);
+}
+
+function fermerOverlaySelection() {
+    document.getElementById('overlay-selection').style.display = 'none';
+    typeMenu = null;
+    typeAccompagnement = null;
+    typeSauces = null;
+    typeBoisson = null;
+    tailleBoisson = null;
+    document.getElementById('contenu-overlay').innerHTML = '';
+    if (elementDeclencheur) {
+        elementDeclencheur.focus();
+        elementDeclencheur = null;
+    }
+}
+
+document.getElementById('choix-overlay').addEventListener('keydown', (event) => {
+    if (event.key !== 'Tab') return;
+    const elements = elementsFocusablesOverlay();
+    if (elements.length === 0) return;
+    const premier = elements[0];
+    const dernier = elements[elements.length - 1];
+    if (event.shiftKey && document.activeElement === premier) {
+        event.preventDefault();
+        dernier.focus();
+    } else if (!event.shiftKey && document.activeElement === dernier) {
+        event.preventDefault();
+        premier.focus();
+    }
+});
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && document.getElementById('overlay-selection').style.display === 'block') {
+        fermerOverlaySelection();
+    }
+});
+
 function ajouterAuPanier(nouvelArticle) {
 
     const articleExistant = panier.find(article =>
@@ -41,6 +115,19 @@ function ajouterAuPanier(nouvelArticle) {
     afficherPanier();
     calculerTotal();
 }
+function abandonPanier () {
+    const boutonAbandon = document.getElementById('button-abandon');
+    boutonAbandon.addEventListener('click', ()  => {
+    if (confirm("Voulez-vous vraiment abandonner votre commande ?")) {
+        panier = [];
+        localStorage.clear();
+        afficherPanier();
+        calculerTotal();
+        window.location.href = "index.html";
+    }
+    })
+}
+abandonPanier();
 
 function chargerProduits(categories) {
     fetch('produits.json')
@@ -49,10 +136,12 @@ function chargerProduits(categories) {
             console.log(data)
             data[categories].forEach(produit => {
                 const produitElement = document.createElement('div');
-                produitElement.classList.add('produit');;                
+                produitElement.classList.add('produit');
+                rendreAccessible(produitElement, `Ajouter ${produit.nom}, ${produit.prix.toFixed(2)} euros`);
                 const imgElement = document.createElement('img');
                 imgElement.classList.add('imgproduit');
                 imgElement.src = produit.image;
+                imgElement.alt = produit.nom;
                 produitElement.appendChild(imgElement);
                 const nomElement = document.createElement('p');
                 nomElement.classList.add('text-produit');
@@ -66,15 +155,13 @@ function chargerProduits(categories) {
                 produitElement.addEventListener('click', () => {
 
                     if (categories === 'Menus') {
-                        const overlay = document.getElementById('overlay-selection');
-                        overlay.style.display = 'block';
+                        ouvrirOverlaySelection();
                         menuEnCours = produit;
                         choixMenu();
                     }
                     
                     else if (categories === 'Boissons') {
-                        const overlay = document.getElementById('overlay-selection');
-                        overlay.style.display = 'block';
+                        ouvrirOverlaySelection();
                         boissonEnCours = produit;
                         choixTailleBoisson();
                     }
@@ -116,6 +203,8 @@ console.log(panier);
 
         const boutonSupprimer = document.createElement('img');
         boutonSupprimer.src = 'images/trash.png';
+        boutonSupprimer.alt = `Supprimer ${article.nom} du panier`;
+        rendreAccessible(boutonSupprimer, `Supprimer ${article.nom} du panier`);
         boutonSupprimer.addEventListener('click', () => {
             panier.splice(index, 1);
             afficherPanier();
@@ -162,22 +251,23 @@ console.log(panier);
                     const prixTotal = document.getElementById('total-prix');
                     prixTotal.textContent = total.toFixed(2) +'€';
                     }
-                // fermer l'overlay
-                const overlay = document.getElementById('overlay-selection');
-                const fermerOverlay = document.getElementById('imgfermer');
-                const annulerOverlay = document.getElementById('btn-annuler');
+
                 const btnFermer = document.getElementById('imgfermer');
                 btnFermer.addEventListener('click', () => {
-                    overlay.style.display = 'none';
-                    typeMenu = null;
-                    typeAccompagnement = null;
-                    document.getElementById('contenu-overlay').innerHTML = '';
+                    fermerOverlaySelection();
+                });
+                btnFermer.addEventListener('keydown', (event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        btnFermer.click();
+                    }
                 });
 
             function choixMenu () {
+                btnRetour.style.display = '';
                 const overlay = document.getElementById('contenu-overlay');
                 overlay.innerHTML = '';
-                const titreModal = document.createElement('h1');
+                const titreModal = document.createElement('h2');
                 titreModal.id = 'overlay-title';
                 const sousTitreModal = document.createElement('p');
                 sousTitreModal.id = 'overlay-text';
@@ -192,19 +282,23 @@ console.log(panier);
                 const imgElement1 = document.createElement('img');
                 const spanElement1 = document.createElement('span');
                 imgElement1.src = 'images/illustration-best-of.png';
+                imgElement1.alt = '';
                 spanElement1.textContent = 'Best Of';
                 element1.appendChild(imgElement1);
                 element1.appendChild(spanElement1);
                 conteneurChoix.appendChild(element1);
+                rendreAccessible(element1, 'Best Of');
                 const element2 = document.createElement('div');
                 element2.classList.add('choix-menu');
                 const imgElement2 = document.createElement('img');
                 const spanElement2 = document.createElement('span');
                 imgElement2.src = 'images/illustration-maxi-best-of.png';
+                imgElement2.alt = '';
                 spanElement2.textContent = 'Maxi Best Of';
                 element2.appendChild(imgElement2);
                 element2.appendChild(spanElement2);
                 conteneurChoix.appendChild(element2);
+                rendreAccessible(element2, 'Maxi Best Of');
                 overlay.appendChild(conteneurChoix);
                 const btnEtapeSuivante = document.createElement('button');
                 btnEtapeSuivante.id = 'btn-etape-suivante';
@@ -233,7 +327,7 @@ console.log(panier);
             function choixAccompagnement() {
                 const overlay = document.getElementById('contenu-overlay');
                 overlay.innerHTML = '';
-                const titreModal = document.createElement('h1');
+                const titreModal = document.createElement('h2');
                 titreModal.id = 'overlay-title';
                 const sousTitreModal = document.createElement('p');
                 sousTitreModal.id = 'overlay-text';
@@ -248,19 +342,23 @@ console.log(panier);
                 const imgElement1 = document.createElement('img');
                 const spanElement1 = document.createElement('span');
                 imgElement1.src = 'frites/GRANDE_FRITE.png';
+                imgElement1.alt = '';
                 spanElement1.textContent = 'Frites';
                 element1.appendChild(imgElement1);
                 element1.appendChild(spanElement1);
                 conteneurChoix.appendChild(element1);
+                rendreAccessible(element1, 'Frites');
                 const element2 = document.createElement('div');
                 element2.classList.add('choix-menu');
                 const imgElement2 = document.createElement('img');
                 const spanElement2 = document.createElement('span');
                 imgElement2.src = 'frites/GRANDE_POTATOES.png';
+                imgElement2.alt = '';
                 spanElement2.textContent = 'Potatoes';
                 element2.appendChild(imgElement2);
                 element2.appendChild(spanElement2);
                 conteneurChoix.appendChild(element2);
+                rendreAccessible(element2, 'Potatoes');
                 overlay.appendChild(conteneurChoix);
                 const btnEtapeSuivante = document.createElement('button');
                 btnEtapeSuivante.id = 'btn-etape-suivante';
@@ -292,7 +390,7 @@ console.log(panier);
 function choixSauce () {
                 const overlay = document.getElementById('contenu-overlay');
                 overlay.innerHTML = '';
-                const titreModal = document.createElement('h1');
+                const titreModal = document.createElement('h2');
                 titreModal.id = 'overlay-title';
                 const sousTitreModal = document.createElement('p');
                 sousTitreModal.id = 'overlay-text';
@@ -312,10 +410,12 @@ function choixSauce () {
                             const imgElementSauces = document.createElement('img');
                             const spanElementSauces = document.createElement('span');
                             imgElementSauces.src = sauces.image;
+                            imgElementSauces.alt = '';
                             spanElementSauces.textContent = sauces.nom;
                             elementSauces.appendChild(imgElementSauces);
                             elementSauces.appendChild(spanElementSauces);
                             conteneurChoix.appendChild(elementSauces);
+                            rendreAccessible(elementSauces, sauces.nom);
                            
                             elementSauces.addEventListener('click', () => {
                                 typeSauces = sauces.nom;
@@ -345,7 +445,7 @@ function choixSauce () {
         function choixBoisson() {
                 const overlay = document.getElementById('contenu-overlay');
                 overlay.innerHTML = '';
-                const titreModal = document.createElement('h1');
+                const titreModal = document.createElement('h2');
                 titreModal.id = 'overlay-title';
                 const sousTitreModal = document.createElement('p');
                 sousTitreModal.id = 'overlay-text';
@@ -365,10 +465,12 @@ function choixSauce () {
                             const imgElementBoisson = document.createElement('img');
                             const spanElementBoisson = document.createElement('span');
                             imgElementBoisson.src = boisson.image;
+                            imgElementBoisson.alt = '';
                             spanElementBoisson.textContent = boisson.nom;
                             elementBoisson.appendChild(imgElementBoisson);
                             elementBoisson.appendChild(spanElementBoisson);
                             conteneurChoix.appendChild(elementBoisson);
+                            rendreAccessible(elementBoisson, boisson.nom);
                            
                             elementBoisson.addEventListener('click', () => {
                                 typeBoisson = boisson.nom;
@@ -388,7 +490,6 @@ function choixSauce () {
         
                         btnEtapeSuivante.addEventListener('click', () => {
                                     const surcharge = typeMenu === 'Maxi Best Of' ? 2.00 : 0;
-                                    document.getElementById('overlay-selection').style.display = 'none';
                                     ajouterAuPanier({
                                     nom: menuEnCours.nom,
                                     formule: typeMenu,
@@ -398,12 +499,14 @@ function choixSauce () {
                                     prix: menuEnCours.prix + surcharge,
                                     quantite: 1
                         });
+                        fermerOverlaySelection();
         })})}
                             
         function choixTailleBoisson () {
+                tailleBoisson = null;
                 const overlay = document.getElementById('contenu-overlay');
                 overlay.innerHTML = '';
-                const titreModal = document.createElement('h1');
+                const titreModal = document.createElement('h2');
                 titreModal.id = 'overlay-title';
                 const sousTitreModal = document.createElement('p');
                 sousTitreModal.id = 'overlay-text';
@@ -417,20 +520,24 @@ function choixSauce () {
                 element1.classList.add('choix-menu');
                 const imgElement1 = document.createElement('img');
                 const spanElement1 = document.createElement('span');
-                imgElement1.src = 'boissons/coca-cola.png';
+                imgElement1.src = boissonEnCours.image;
+                imgElement1.alt = '';
                 spanElement1.textContent = '30Cl';
                 element1.appendChild(imgElement1);
                 element1.appendChild(spanElement1);
                 conteneurChoix.appendChild(element1);
+                rendreAccessible(element1, 'Taille 30 centilitres');
                 const element2 = document.createElement('div');
                 element2.classList.add('choix-menu');
                 const imgElement2 = document.createElement('img');
                 const spanElement2 = document.createElement('span');
-                imgElement2.src = 'boissons/coca-cola.png';
+                imgElement2.src = boissonEnCours.image;
+                imgElement2.alt = '';
                 spanElement2.textContent = '50Cl';
                 element2.appendChild(imgElement2);
                 element2.appendChild(spanElement2);
                 conteneurChoix.appendChild(element2);
+                rendreAccessible(element2, 'Taille 50 centilitres');
                 overlay.appendChild(conteneurChoix);
                 const btnEtapeSuivante = document.createElement('button');
                 btnEtapeSuivante.id = 'btn-etape-suivante';
@@ -465,8 +572,10 @@ function choixSauce () {
                 compteurNombreBoisson.appendChild(nombreQtt);
                 compteurNombreBoisson.appendChild(btnPlus);
                 compteurNombreBoisson.id = 'compteur';
-                btnMoins.id ='btn-moins-plus';
-                btnPlus.id ='btn-moins-plus';
+                btnMoins.classList.add('btn-moins-plus');
+                btnPlus.classList.add('btn-moins-plus');
+                btnMoins.setAttribute('aria-label', 'Diminuer la quantité');
+                btnPlus.setAttribute('aria-label', 'Augmenter la quantité');
                 
                 btnMoins.addEventListener ('click', () =>{
                     if (quantiteBoisson > 1) {
@@ -486,8 +595,7 @@ function choixSauce () {
                 btnAnnuler.textContent = 'Annuler';
                 btnOverlayBoisson.appendChild(btnAnnuler);
                 btnAnnuler.addEventListener('click', () => {
-                    document.getElementById('overlay-selection').style.display = 'none';
-                    document.getElementById('contenu-overlay').innerHTML = '';
+                    fermerOverlaySelection();
                 });
 
                 const btnAddCart = document.createElement('button');
@@ -502,9 +610,6 @@ function choixSauce () {
                     return;
                  }
 
-                document.getElementById('overlay-selection').style.display = 'none';
-                document.getElementById('contenu-overlay').innerHTML = '';
-
                 ajouterAuPanier({
                     nom: boissonEnCours.nom + ' ' + tailleBoisson,
                     taille: tailleBoisson,
@@ -513,20 +618,32 @@ function choixSauce () {
                     : boissonEnCours.prix,
                     quantite: quantiteBoisson
                 });
-
+                fermerOverlaySelection();
         });
     }
         const boutonPayer = document.getElementById('button-payer');
-            boutonPayer.addEventListener('click', () => {
-            localStorage.setItem('panier', JSON.stringify(panier));
-            localStorage.setItem('numeroCommande', numeroCommande);
-    
-            if (lieuCommande === 'sur-place') {
+        boutonPayer.addEventListener('click', () => {
+
+        const total = panier.reduce((acc, article) => acc + article.prix * article.quantite, 0).toFixed(2);
+
+        const recapCommande = {
+            numeroCommande: numeroCommande,
+            numeroChevalet: null,
+            date: new Date().toISOString(),
+            produits: panier,
+            total: total
+        };
+
+        localStorage.setItem('panier', JSON.stringify(panier));
+        localStorage.setItem('numeroCommande', numeroCommande);
+        localStorage.setItem('recapCommande', JSON.stringify(recapCommande));
+
+        if (lieuCommande === 'sur-place') {
             window.location.href = 'numero-chevalet.html';
-            } else {
+        } else {
             window.location.href = 'fin-commande.html';
-            }
-            });
+        }
+        });
 
         function creationNumeroCommande () {
             const numOrder = document.getElementById('numéro-commande');
@@ -534,14 +651,3 @@ function choixSauce () {
             numOrder.textContent = numeroCommande;
            
     }
-            
-    
-
-
-
-
-       
-                            
-                
-              
-        

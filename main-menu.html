@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="stylev2.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
     <title>Borne Wacdo</title>
 </head>
 <body>
-    <section id="slider"></section>
-     <section id="resume-commande">
+    <div id="slider"></div>
+     <div id="resume-commande">
         <div id="commande">
         <img id="logo" src="images/logo.png" alt="Logo Wacdo">
         </div>
@@ -33,19 +33,19 @@
             <button id="button-payer">Payer</button>
         </div>
         </div>
-    </section>
+    </div>
     <section id="text-menu">
     <h1 id="title-menu">Nos menus</h1>
     <p id="subtitles-menu">Un sandwich, une friture ou une salade et une boisson </p>
     </section>
-    <section id="zone-produit"></section>
-    <section id="overlay-selection">
+    <div id="zone-produit"></div>
+    <div id="overlay-selection">
         <div id="choix-overlay">
             <button id = "btnRetour">Retour</button>
-            <img src="images/supprimer.png" id="imgfermer" alt="Croix de fermeture">
+            <img src="images/supprimer.png" id="imgfermer" alt="Fermer la fenêtre" role="button" tabindex="0">
             <div id="contenu-overlay"></div>
         </div>
-    </section>  
+    </div>  
     <script src="slider.js"></script> 
     <script src="produit.js"></script>
 </body>

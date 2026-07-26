@@ -4,64 +4,43 @@ const numeroCommande = localStorage.getItem('numeroCommande');
 
 const btnChevalet = document.getElementById('btn-chevalet');
                 btnChevalet.addEventListener('click', () => {
-                const chiffre1 = document.getElementById('chiffre1').value;
-                const chiffre2 = document.getElementById('chiffre2').value;
-                const chiffre3 = document.getElementById('chiffre3').value;
-    
-                    if (chiffre1 === '' || chiffre2 === '' || chiffre3 === '') {
-                        alert('Veuillez remplir tous les chiffres !');
-                    return;
-                    }
-    
-    
-                numeroChevalet = chiffre1 + chiffre2 + chiffre3;
-                const commande = {
-                numeroCommande: numeroCommande,
-                numeroChevalet: numeroChevalet,
-                date: new Date().toISOString(),
-                produits: panierStockage,
-                total: panierStockage.reduce((acc, article) => acc + article.prix * article.quantite, 0).toFixed(2)
-                };
+    const chiffre1 = document.getElementById('chiffre1').value;
+    const chiffre2 = document.getElementById('chiffre2').value;
+    const chiffre3 = document.getElementById('chiffre3').value;
 
-                fetch('https://exemple-api/commande', {
-                method: 'POST',
-                headers: {
-                 'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(commande)
-                })
-                    .then(() => {
-                    localStorage.removeItem("panier");
-                    window.location.href = 'fin-commande.html';
-                })
-               .catch((error) => {
-                    console.error(error);
-                    const recapCommande = {
-                        numeroCommande: numeroCommande,
-                        numeroChevalet: numeroChevalet,
-                        date: new Date().toISOString(),
-                        produits: panierStockage,
-                        total: panierStockage.reduce(
-                            (acc, article) => acc + article.prix * article.quantite,0).toFixed(2)
-                            };
-                        console.log("Récapitulatif créé :", recapCommande);
+    if (chiffre1 === '' || chiffre2 === '' || chiffre3 === '') {
+        alert('Veuillez remplir tous les chiffres !');
+        return;
+    }
 
-                            localStorage.setItem(
-                                "recapCommande",
-                            JSON.stringify(recapCommande)
-                        );
+    numeroChevalet = chiffre1 + chiffre2 + chiffre3;
 
-                        console.log(
-                        "Stockage local :",
-                        localStorage.getItem("recapCommande")
-                        );
-                            //localStorage.setItem("recapCommande",JSON.stringify(recapCommande)
+    const recapCommande = {
+        numeroCommande: numeroCommande,
+        numeroChevalet: numeroChevalet,
+        date: new Date().toISOString(),
+        produits: panierStockage,
+        total: panierStockage.reduce((acc, article) => acc + article.prix * article.quantite, 0).toFixed(2)
+    };
 
-                    localStorage.removeItem("panier");
-                    alert("Votre commande a bien été prise en compte !");
-                    window.location.href = "fin-commande.html";
-                });
-                });
+    fetch('https://exemple-api/commande', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(recapCommande)
+    })
+        .then(() => {
+            localStorage.setItem("recapCommande", JSON.stringify(recapCommande));
+            localStorage.removeItem("panier");
+            window.location.href = 'fin-commande.html';
+        })
+        .catch((error) => {
+            console.error(error);
+            localStorage.setItem("recapCommande", JSON.stringify(recapCommande));
+            localStorage.removeItem("panier");
+            alert("Votre commande a bien été prise en compte !");
+            window.location.href = "fin-commande.html";
+        });
+});
             
 
             const inputs = document.querySelectorAll('.chiffre');

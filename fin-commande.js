@@ -1,5 +1,5 @@
 document.getElementById('btn-neworder').addEventListener('click', () => {
-    localStorage.removeItem('lieuCommande');
+    localStorage.clear();
     window.location.href = 'index.html';
 });
 const panier = JSON.parse(localStorage.getItem('panier'));
