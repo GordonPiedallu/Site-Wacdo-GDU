@@ -282,8 +282,10 @@ p#overlay-text {
     display: flex;
     flex-direction: column;
     max-width: 698px;
-    max-height: 441px;
+    min-height: 441px;
     width: 90%;
+    padding: 20px;
+    margin: auto;
 }
 
 #contenu-overlay {
@@ -396,11 +398,13 @@ p#overlay-text {
     cursor: pointer;
     display: block;
     margin-top: 5%;
+    margin: auto;
 }
 
 #img-chevalet {
     max-width: 259px;
     max-height: 265px;
+    margin: auto;
 }
 
 #button-resume {

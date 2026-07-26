@@ -130,7 +130,7 @@ function abandonPanier () {
 abandonPanier();
 
 function chargerProduits(categories) {
-    fetch('produits.json')
+    fetch('./data/produits.json')
         .then(data => data.json())
         .then(data => {
             console.log(data)
@@ -400,7 +400,7 @@ function choixSauce () {
                 overlay.appendChild(titreModal);
                 overlay.appendChild(sousTitreModal);
                 
-                fetch('produits.json')
+                fetch('./data/produits.json')
                     .then (data => data.json())
                     .then (data => {
                         data['Sauces'].forEach(sauces => {
@@ -455,7 +455,7 @@ function choixSauce () {
                 overlay.appendChild(titreModal);
                 overlay.appendChild(sousTitreModal);
                 
-                fetch('produits.json')
+                fetch('./data/produits.json')
                     .then (data => data.json())
                     .then (data => {
                         data['Boissons'].forEach(boisson => {

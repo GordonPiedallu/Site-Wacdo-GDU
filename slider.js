@@ -1,4 +1,4 @@
-fetch('categories.json',)
+fetch('./data/categories.json',)
 .then(data => data.json())
 .then (data =>  {
     data.forEach(categorie => {
